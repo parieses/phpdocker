@@ -1,4 +1,4 @@
-liang_nginx:
+nginx:
   container_name: nginx
   build: ./nginx
   ports:
@@ -7,17 +7,16 @@ liang_nginx:
     # source
     - ./src/:/usr/share/nginx/html
   links:
-    - liang_php_fpm
-
-liang_php_fpm:
+    - php_fpm
+php_fpm:
   container_name: php_fpm
   build: ./php-fpm
   volumes:
     - ./src/:/usr/share/nginx/html
   links:
-    - liang_mysql
+    - mysql
 
-liang_mysql:
+mysql:
   image: mysql:5.7
   container_name: mysql
   environment:
